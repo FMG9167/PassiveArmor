@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "passivearmor",
+  "version": "${version}",
+  "name": "PassiveArmor",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/passivearmor/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "io.github.FMG9167.passivearmor.client.PassivearmorDataGenerator"
+    ],
+    "client": [
+      "io.github.FMG9167.passivearmor.client.PassivearmorClient"
+    ],
+    "main": [
+      "io.github.FMG9167.passivearmor.PassiveArmor"
+    ]
+  },
+  "mixins": [
+    "passivearmor.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
