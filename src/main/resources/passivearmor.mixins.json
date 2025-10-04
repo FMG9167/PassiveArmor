@@ -4,6 +4,7 @@
   "package": "io.github.FMG9167.passivearmor.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ForgingScreenHandlerAccessor",
     "AnvilScreenHandlerMixin",
     "HostileToPassiveMixin"
   ],

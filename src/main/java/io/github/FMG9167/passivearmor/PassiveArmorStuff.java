@@ -4,12 +4,12 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class PassiveArmorStuff {
     private static final Map<String, Class<? extends HostileEntity>> EntityIndex = new HashMap<>();
@@ -32,19 +32,19 @@ public class PassiveArmorStuff {
         String leggings = player.getEquippedStack(EquipmentSlot.LEGS).getOrDefault(PassiveArmorComponents.PASSIVE_ENTITY,"");
         String boots = player.getEquippedStack(EquipmentSlot.FEET).getOrDefault(PassiveArmorComponents.PASSIVE_ENTITY,"");
         String full = helmet + " " + chestplate + " " + leggings + " " + boots;
-        List<String> list = Arrays.asList(full.split(" "));
-        list.removeAll(List.of(""));
+        List<String> list = Arrays.asList(full.strip().split(" "));
         return String.join(" ", list);
     }
 
     public static boolean shouldBePassive(MobEntity mob, LivingEntity target){
-        boolean[] hiddenMobClasses = new boolean[EntityIndex.size()];
+        if(mob == null || target == null) return false;
+        if(mob.isRemoved() || target.isRemoved()) return false;
         if(!(target instanceof PlayerEntity player)){
             return false;
         }
 
         String component = getEquippedArmorComponent(player);
-        if(component == ""){
+        if(component.isEmpty()){
             return false;
         }
 
@@ -59,3 +59,13 @@ public class PassiveArmorStuff {
     public static void initialize(){
     }
 }
+
+
+
+
+
+/*
+
+
+
+ */
