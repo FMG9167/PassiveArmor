@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "fabric-datagen": [
-      "io.github.FMG9167.passivearmor.client.PassivearmorDataGenerator"
+      "io.github.FMG9167.passivearmor.client.PassiveArmorDataGenerator"
     ],
     "client": [
-      "io.github.FMG9167.passivearmor.client.PassivearmorClient"
+      "io.github.FMG9167.passivearmor.client.PassiveArmorClient"
     ],
     "main": [
       "io.github.FMG9167.passivearmor.PassiveArmor"

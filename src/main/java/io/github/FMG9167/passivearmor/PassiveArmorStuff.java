@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class PassiveArmorStuff {
     private static final Map<String, Class<? extends HostileEntity>> EntityIndex = new HashMap<>();
@@ -19,10 +18,9 @@ public class PassiveArmorStuff {
         EntityIndex.put("Skeleton", SkeletonEntity.class);
         EntityIndex.put("Creeper", CreeperEntity.class);
         EntityIndex.put("Spider", SpiderEntity.class);
-        EntityIndex.put("Enderman", EndermanEntity.class);
         EntityIndex.put("Witch", WitchEntity.class);
         EntityIndex.put("Piglin", PiglinEntity.class);
-        EntityIndex.put("PiglinBrute", PiglinBruteEntity.class);
+        EntityIndex.put("Brute", PiglinBruteEntity.class);
         EntityIndex.put("WitherSkeleton", WitherSkeletonEntity.class);
     }
 

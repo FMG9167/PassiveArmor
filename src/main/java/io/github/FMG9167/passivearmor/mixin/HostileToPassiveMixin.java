@@ -2,7 +2,6 @@ package io.github.FMG9167.passivearmor.mixin;
 
 import io.github.FMG9167.passivearmor.PassiveArmorStuff;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

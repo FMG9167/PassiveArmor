@@ -1,20 +1,13 @@
 package io.github.FMG9167.passivearmor.mixin;
 
 import io.github.FMG9167.passivearmor.PassiveArmorComponents;
-import net.minecraft.block.entity.ChiseledBookshelfBlockEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.screen.*;
-import net.minecraft.screen.slot.ForgingSlotsManager;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +15,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Arrays;
+
+import static io.github.FMG9167.passivearmor.PassiveArmorItems.catalysts;
 
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilScreenHandlerMixin{
@@ -32,6 +29,8 @@ public abstract class AnvilScreenHandlerMixin{
     @Final
     private static Logger LOGGER;
 
+    @Shadow
+    private boolean keepSecondSlot;
 
     @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
     private void updateResult(CallbackInfo ci){
@@ -43,19 +42,21 @@ public abstract class AnvilScreenHandlerMixin{
         ItemStack rightInput = input.getStack(1);
 
         if(!leftInput.isEmpty() && !rightInput.isEmpty()){
-            EquippableComponent equippable = leftInput.get(DataComponentTypes.EQUIPPABLE);
-            boolean isArmor = equippable != null &&
-                            (equippable.slot().getName().equals("head") ||
-                            equippable.slot().getName().equals("chest") ||
-                            equippable.slot().getName().equals("legs") ||
-                            equippable.slot().getName().equals("feet"));
-            LOGGER.info(equippable.toString());
+            EquippableComponent piece = leftInput.get(DataComponentTypes.EQUIPPABLE);
+            boolean isArmor = piece != null &&
+                            (piece.slot().getName().equals("head") ||
+                            piece.slot().getName().equals("chest") ||
+                            piece.slot().getName().equals("legs") ||
+                            piece.slot().getName().equals("feet"));
             if(isArmor) {
-                if (rightInput.getItem() == Items.ROTTEN_FLESH) {
+                if (catalysts.contains(rightInput.getItem())) {
                     ItemStack result = leftInput.copy();
-                    result.set(PassiveArmorComponents.PASSIVE_ENTITY, "Zombie");
+                    String name = rightInput.getItemName().toString().split("'")[1].split("\\.")[2].split("_")[0].toUpperCase();
+                    result.set(PassiveArmorComponents.PASSIVE_ENTITY, name);
+                    LOGGER.info(Arrays.toString(rightInput.getItemName().toString().split(" ")));
                     output.setStack(0, result);
                     this.levelCost.set(5);
+                    this.keepSecondSlot = true;
                     ci.cancel();
                 }
             }
