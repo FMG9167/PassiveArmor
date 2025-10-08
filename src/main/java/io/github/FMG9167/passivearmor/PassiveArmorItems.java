@@ -36,9 +36,8 @@ public class PassiveArmorItems {
     public static final Item CREEPER_CATALYST = register("creeper_catalyst", Item::new, new Item.Settings());
     public static final Item SPIDER_CATALYST = register("spider_catalyst", Item::new, new Item.Settings());
     public static final Item WITCH_CATALYST = register("witch_catalyst", Item::new, new Item.Settings());
-    public static final Item PIGLIN_CATALYST = register("piglin_catalyst", Item::new, new Item.Settings());
-    public static final Item BRUTE_CATALYST = register("brute_catalyst", Item::new, new Item.Settings());
     public static final Item WITHER_SKELETON_CATALYST =  register("witherskeleton_catalyst", Item::new, new Item.Settings());
+    public static final Item ENDERMAN_CATALYST = register("enderman_catalyst", Item::new, new Item.Settings());
 
 
     public static final List<Item> catalysts = List.of(
@@ -47,9 +46,8 @@ public class PassiveArmorItems {
             CREEPER_CATALYST,
             SPIDER_CATALYST,
             WITCH_CATALYST,
-            PIGLIN_CATALYST,
-            BRUTE_CATALYST,
-            WITHER_SKELETON_CATALYST);
+            WITHER_SKELETON_CATALYST,
+            ENDERMAN_CATALYST);
 
     public static void initialize(){
         Registry.register(Registries.ITEM_GROUP, PASSIVE_ARMOR_GROUP_KEY, PASSIVE_ARMOR_GROUP);
@@ -60,9 +58,8 @@ public class PassiveArmorItems {
             itemGroup.add(CREEPER_CATALYST);
             itemGroup.add(SPIDER_CATALYST);
             itemGroup.add(WITCH_CATALYST);
-            itemGroup.add(PIGLIN_CATALYST);
-            itemGroup.add(BRUTE_CATALYST);
             itemGroup.add(WITHER_SKELETON_CATALYST);
+            itemGroup.add(ENDERMAN_CATALYST);
         });
     }
 }

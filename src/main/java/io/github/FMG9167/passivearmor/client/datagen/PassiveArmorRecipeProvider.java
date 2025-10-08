@@ -1,15 +1,19 @@
 package io.github.FMG9167.passivearmor.client.datagen;
 
-import io.github.FMG9167.passivearmor.PassiveArmorItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static io.github.FMG9167.passivearmor.PassiveArmorItems.*;
 
 public class PassiveArmorRecipeProvider extends FabricRecipeProvider {
     public PassiveArmorRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -21,15 +25,28 @@ public class PassiveArmorRecipeProvider extends FabricRecipeProvider {
         return new RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
-                createShaped(RecipeCategory.COMBAT, PassiveArmorItems.ZOMBIE_CATALYST, 1)
-                        .pattern("111")
-                        .pattern("121")
-                        .pattern("111")
-                        .input('1', Items.ROTTEN_FLESH)
-                        .input('2', Items.NETHER_STAR)
-                        .group("combat")
-                        .criterion(hasItem(PassiveArmorItems.ZOMBIE_CATALYST), conditionsFromItem(PassiveArmorItems.ZOMBIE_CATALYST))
-                        .offerTo(exporter);
+
+                Map<Item, Item> itemToIngredient = new HashMap<>();
+
+                itemToIngredient.put(ZOMBIE_CATALYST, Items.ROTTEN_FLESH);
+                itemToIngredient.put(SKELETON_CATALYST, Items.BONE);
+                itemToIngredient.put(CREEPER_CATALYST, Items.GUNPOWDER);
+                itemToIngredient.put(SPIDER_CATALYST, Items.SPIDER_EYE);
+                itemToIngredient.put(WITCH_CATALYST, Items.GLASS_BOTTLE);
+                itemToIngredient.put(WITHER_SKELETON_CATALYST, Items.WITHER_SKELETON_SKULL);
+                itemToIngredient.put(ENDERMAN_CATALYST, Items.ENDER_PEARL);
+
+                for(Item item : catalysts) {
+                    createShaped(RecipeCategory.COMBAT, item, 1)
+                            .pattern("111")
+                            .pattern("121")
+                            .pattern("111")
+                            .input('1', itemToIngredient.get(item))
+                            .input('2', Items.NETHER_STAR)
+                            .group("combat")
+                            .criterion(hasItem(item), conditionsFromItem(item))
+                            .offerTo(exporter);
+                }
             }
         };
     }

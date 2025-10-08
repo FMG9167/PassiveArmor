@@ -21,7 +21,8 @@ public class PassiveArmorStuff {
         EntityIndex.put("Witch", WitchEntity.class);
         EntityIndex.put("Piglin", PiglinEntity.class);
         EntityIndex.put("Brute", PiglinBruteEntity.class);
-        EntityIndex.put("WitherSkeleton", WitherSkeletonEntity.class);
+        EntityIndex.put("Witherskeleton", WitherSkeletonEntity.class);
+        EntityIndex.put("Enderman", EndermanEntity.class);
     }
 
     private static String getEquippedArmorComponent(PlayerEntity player) {
@@ -48,6 +49,7 @@ public class PassiveArmorStuff {
 
         for(String curMob : component.split(" ")){
             if(EntityIndex.containsKey(curMob) && EntityIndex.get(curMob).isInstance(mob)){
+                PassiveArmor.LOGGER.info(mob.getName().getString() + " should be passive");
                 return true;
             }
         }

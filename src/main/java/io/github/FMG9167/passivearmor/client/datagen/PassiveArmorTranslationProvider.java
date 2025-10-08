@@ -25,5 +25,8 @@ public class PassiveArmorTranslationProvider extends FabricLanguageProvider {
                 translationBuilder.add("item.passivearmor."+i+"_"+j+".tooltip", "Hidden from %1$s");
             }
         }
+
+        translationBuilder.add("itemGroup.passivearmor", "Passive Armor");
+
     }
 }
