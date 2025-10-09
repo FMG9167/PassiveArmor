@@ -4,6 +4,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.raid.RaiderEntity;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,18 +12,23 @@ import java.util.List;
 import java.util.Map;
 
 public class PassiveArmorStuff {
-    private static final Map<String, Class<? extends HostileEntity>> EntityIndex = new HashMap<>();
+    private static final Map<String, List<Class<? extends MobEntity>>> EntityIndex = new HashMap<>();
 
     static {
-        EntityIndex.put("Zombie", ZombieEntity.class);
-        EntityIndex.put("Skeleton", SkeletonEntity.class);
-        EntityIndex.put("Creeper", CreeperEntity.class);
-        EntityIndex.put("Spider", SpiderEntity.class);
-        EntityIndex.put("Witch", WitchEntity.class);
-        EntityIndex.put("Piglin", PiglinEntity.class);
-        EntityIndex.put("Brute", PiglinBruteEntity.class);
-        EntityIndex.put("Witherskeleton", WitherSkeletonEntity.class);
-        EntityIndex.put("Enderman", EndermanEntity.class);
+        EntityIndex.put("Zombie", List.of(ZombieEntity.class));
+        EntityIndex.put("Skeleton", List.of(SkeletonEntity.class, BoggedEntity.class, StrayEntity.class));
+        EntityIndex.put("Creeper", List.of(CreeperEntity.class));
+        EntityIndex.put("Spider", List.of(SpiderEntity.class));
+        EntityIndex.put("Witherskeleton", List.of(WitherSkeletonEntity.class));
+        EntityIndex.put("Enderman", List.of(EndermanEntity.class));
+        EntityIndex.put("Raider", List.of(RaiderEntity.class, VexEntity.class));
+        EntityIndex.put("Shulker", List.of(ShulkerEntity.class));
+        EntityIndex.put("Slime", List.of(SlimeEntity.class));
+        EntityIndex.put("MagmaCube", List.of(MagmaCubeEntity.class));
+        EntityIndex.put("Ghast", List.of(GhastEntity.class));
+        EntityIndex.put("Blaze", List.of(BlazeEntity.class));
+        EntityIndex.put("Phantom", List.of(PhantomEntity.class));
+
     }
 
     private static String getEquippedArmorComponent(PlayerEntity player) {
@@ -48,9 +54,12 @@ public class PassiveArmorStuff {
         }
 
         for(String curMob : component.split(" ")){
-            if(EntityIndex.containsKey(curMob) && EntityIndex.get(curMob).isInstance(mob)){
-                PassiveArmor.LOGGER.info(mob.getName().getString() + " should be passive");
-                return true;
+            if(EntityIndex.containsKey(curMob)){
+                for(Class<? extends MobEntity> curClass : EntityIndex.get(curMob)){
+                    if(curClass.isInstance(mob)){
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -59,13 +68,3 @@ public class PassiveArmorStuff {
     public static void initialize(){
     }
 }
-
-
-
-
-
-/*
-
-
-
- */

@@ -4,10 +4,10 @@
   "version": "${version}",
   "name": "PassiveArmor",
   "description": "",
-  "authors": [],
+  "authors": ["FMG"],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/passivearmor/icon.png",
+  "icon": "assets/passivearmor/textures/item/zombie_catalyst.png",
   "environment": "*",
   "entrypoints": {
     "fabric-datagen": [

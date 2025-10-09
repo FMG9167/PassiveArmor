@@ -32,9 +32,15 @@ public class PassiveArmorRecipeProvider extends FabricRecipeProvider {
                 itemToIngredient.put(SKELETON_CATALYST, Items.BONE);
                 itemToIngredient.put(CREEPER_CATALYST, Items.GUNPOWDER);
                 itemToIngredient.put(SPIDER_CATALYST, Items.SPIDER_EYE);
-                itemToIngredient.put(WITCH_CATALYST, Items.GLASS_BOTTLE);
+                itemToIngredient.put(RAIDER_CATALYST, Items.CROSSBOW);
                 itemToIngredient.put(WITHER_SKELETON_CATALYST, Items.WITHER_SKELETON_SKULL);
                 itemToIngredient.put(ENDERMAN_CATALYST, Items.ENDER_PEARL);
+                itemToIngredient.put(SHULKER_CATALYST, Items.SHULKER_SHELL);
+                itemToIngredient.put(SLIME_CATALYST, Items.SLIME_BALL);
+                itemToIngredient.put(MAGMACUBE_CATALYST, Items.MAGMA_CREAM);
+                itemToIngredient.put(GHAST_CATALYST, Items.GHAST_TEAR);
+                itemToIngredient.put(BLAZE_CATALYST, Items.BLAZE_ROD);
+                itemToIngredient.put(PHANTOM_CATALYST, Items.PHANTOM_MEMBRANE);
 
                 for(Item item : catalysts) {
                     createShaped(RecipeCategory.COMBAT, item, 1)

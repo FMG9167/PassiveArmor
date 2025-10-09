@@ -15,14 +15,17 @@ public class PassiveArmorTranslationProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 
-        for(String i : List.of("Zombie Catalyst", "Skeleton Catalyst", "Creeper Catalyst", "Spider Catalyst", "Witch Catalyst", "Piglin Catalyst", "Brute Catalyst", "WitherSkeleton Catalyst")){
-            translationBuilder.add("item.passivearmor."+String.join("_", i.toLowerCase().split(" ")), i);
-            translationBuilder.add("item.passivearmor."+String.join("_", i.toLowerCase().split(" "))+".tooltip", "Will hide you from %1$s when applied to armor");
+        for(String i : List.of("Zombie Catalyst", "Skeleton Catalyst", "Creeper Catalyst", "Spider Catalyst", "Raider Catalyst",
+                "Enderman Catalyst", "WitherSkeleton Catalyst", "Shulker Catalyst", "Slime Catalyst", "MagmaCube Catalyst",
+                "Ghast Catalyst", "Blaze Catalyst", "Phantom Catalyst")){
+            String join = String.join("_", i.toLowerCase().split(" "));
+            translationBuilder.add("item.passivearmor."+join, i);
+            translationBuilder.add("item.passivearmor."+ join +".tooltip", "Will hide you from %1$ss when applied to armor");
         }
 
         for(String i : List.of("leather", "chainmail", "iron", "golden", "diamond", "netherite")){
             for(String j : List.of("helmet", "chestplate", "leggings", "boots")) {
-                translationBuilder.add("item.passivearmor."+i+"_"+j+".tooltip", "Hidden from %1$s");
+                translationBuilder.add("item.passivearmor."+i+"_"+j+".tooltip", "Hidden from %1$ss");
             }
         }
 
