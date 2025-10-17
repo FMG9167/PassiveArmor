@@ -1,5 +1,5 @@
 # PassiveArmor
-A Fabric 1.21.8 mod which adds "catalysts" which can be used on armor pieces to prevent mobs from targeting you.
+A Fabric 1.21.1 mod which adds "catalysts" which can be used on armor pieces to prevent mobs from targeting you.
 
 ## What does it do?
 This mod makes end game less annoying. After you have gotten your hands on some nether star, you can make mobs targeting system to ignore you! (atmost 4 types of mobs at once)
