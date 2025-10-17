@@ -20,13 +20,7 @@ public class PassiveArmorTranslationProvider extends FabricLanguageProvider {
                 "Ghast Catalyst", "Blaze Catalyst", "Phantom Catalyst")){
             String join = String.join("_", i.toLowerCase().split(" "));
             translationBuilder.add("item.passivearmor."+join, i);
-            translationBuilder.add("item.passivearmor."+ join +".tooltip", "Will hide you from %1$ss when applied to armor");
-        }
-
-        for(String i : List.of("leather", "chainmail", "iron", "golden", "diamond", "netherite")){
-            for(String j : List.of("helmet", "chestplate", "leggings", "boots")) {
-                translationBuilder.add("item.passivearmor."+i+"_"+j+".tooltip", "Hidden from %1$ss");
-            }
+            translationBuilder.add("item.passivearmor."+ join +".tooltip", "Will hide you from "+ i.split(" ")[0] +"s when applied to armor");
         }
 
         translationBuilder.add("itemGroup.passivearmor", "Passive Armor");
